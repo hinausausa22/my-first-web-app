@@ -1,12 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Site</title>
+  <meta charset="utf-8" />
+  <title>プルャ大学 異文化コミュニケーション学部</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
-    <h1>Welcome to My GitHub Pages Site</h1>
-    <p>This is my first GitHub Pages deployment!</p>
+<body class="wrap">
+  <header>
+    <h1>プルャ大学 <small>異文化コミュニケーション学部</small></h1>
+    <p class="sub">うさぎが勝手に設立した「その他」向けの無認可自称大学（ただの塾）</p>
+  </header>
+
+  <main class="card">
+    <div class="bunny">
+      <div class="ear l"></div><div class="ear r"></div>
+      <div class="face"><div class="eye l"></div><div class="eye r"></div><div class="nose"></div><div class="mouth"></div></div>
+      <p class="bubble">プルャ…プルルルル！</p>
+    </div>
+
+    <div class="choices center" style="margin-top:6px">
+      <a class="btn primary" href="./setup.html?mode=mock">模擬試験　受験する</a>
+      <a id="examLink" class="btn disabled" href="#">入学試験　出願する（未開放）</a>
+    </div>
+
+    <div class="choices center" style="margin-top:6px">
+      <a class="btn" href="./records.html">模試成績表一覧</a>
+    </div>
+
+    <p class="note">※ ネタ作品です。実在の機関・入試制度とは関係ありません。</p>
+  </main>
+
+  <footer><small>© 2025 Puluya University (Unofficial) </small></footer>
+
+  <script>
+    // 模試でB判定以上の成績が1つでもあれば入試解放
+    const unlocked = localStorage.getItem('puluya_exam_unlocked') === '1';
+    const link = document.getElementById('examLink');
+    if (unlocked) {
+      link.textContent = '入学試験　出願する';
+      link.classList.remove('disabled');
+      link.href = './setup.html?mode=exam';
+    } else {
+      link.addEventListener('click', (e)=>{ e.preventDefault(); alert('まずは模試でB判定以上を取ってきてね。プルャ。'); });
+    }
+  </script>
 </body>
 </html>
